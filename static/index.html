@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoValuate Pro — Enterprise Automotive Valuation & Market Analytics</title>
+    <!-- Modern Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="brand">
+                <div class="brand-icon">
+                    <i class="fa-solid fa-shield-halved"></i>
+                </div>
+                <div class="brand-text">
+                    <h2>AutoValuate<span>.PRO</span></h2>
+                    <p>Vehicle Intelligence</p>
+                </div>
+            </div>
+
+            <nav class="nav-menu">
+                <button class="nav-item active" data-tab="tab-predictor">
+                    <i class="fa-solid fa-calculator"></i>
+                    <span>Valuation Engine</span>
+                </button>
+                <button class="nav-item" data-tab="tab-compare">
+                    <i class="fa-solid fa-code-compare"></i>
+                    <span>Side-by-Side Compare</span>
+                </button>
+                <button class="nav-item" data-tab="tab-market">
+                    <i class="fa-solid fa-chart-pie"></i>
+                    <span>Market Intelligence</span>
+                </button>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="status-badge">
+                    <div class="pulse-indicator"></div>
+                    <div class="status-info">
+                        <span class="title">System Status</span>
+                        <span class="value">Live Market Engine Active</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Top Bar Header -->
+            <header class="topbar">
+                <div class="page-title">
+                    <h1 id="tabTitle">Instant Car Price Valuation</h1>
+                    <p id="tabSubtitle">Calculate precise market resale values in Indian Rupees (₹ Lakhs) & Global USD</p>
+                </div>
+
+                <div class="topbar-actions">
+                    <div class="currency-toggle">
+                        <button class="curr-btn active" id="btnINR" onclick="setCurrency('INR')">🇮🇳 ₹ INR (Lakhs)</button>
+                        <button class="curr-btn" id="btnUSD" onclick="setCurrency('USD')">🇺🇸 $ USD</button>
+                    </div>
+
+                    <button class="btn print-btn" onclick="printValuationCertificate()">
+                        <i class="fa-solid fa-file-pdf"></i> Valuation Report
+                    </button>
+                </div>
+            </header>
+
+            <!-- TAB 1: VALUATION ENGINE -->
+            <section id="tab-predictor" class="tab-pane active">
+                <!-- Preset Bar -->
+                <div class="preset-container">
+                    <span class="preset-label"><i class="fa-solid fa-wand-magic-sparkles"></i> Quick Vehicles:</span>
+                    <div class="preset-buttons">
+                        <button class="preset-btn" onclick="applyPreset('sports')">🏎️ Luxury Convertible</button>
+                        <button class="preset-btn" onclick="applyPreset('suv')">🚙 Premium SUV / Wagon</button>
+                        <button class="preset-btn" onclick="applyPreset('economy')">🚗 City Hatchback</button>
+                        <button class="preset-btn" onclick="applyPreset('executive')">💼 Executive Sedan</button>
+                    </div>
+                </div>
+
+                <div class="predictor-grid">
+                    <!-- Input Form Panel -->
+                    <div class="glass-card form-panel">
+                        <div class="card-header">
+                            <h3><i class="fa-solid fa-sliders"></i> Vehicle Configurations</h3>
+                            <button class="reset-btn" onclick="resetForm()"><i class="fa-solid fa-rotate-left"></i> Reset Defaults</button>
+                        </div>
+
+                        <form id="predictionForm" onsubmit="event.preventDefault();">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="brandSelect">Make / Brand</label>
+                                    <select id="brandSelect" class="custom-select" onchange="triggerPredict()"></select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="bodySelect">Body Category</label>
+                                    <select id="bodySelect" class="custom-select" onchange="triggerPredict()"></select>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="fuelSelect">Fuel System</label>
+                                    <select id="fuelSelect" class="custom-select" onchange="triggerPredict()"></select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="driveSelect">Drivetrain</label>
+                                    <select id="driveSelect" class="custom-select" onchange="triggerPredict()"></select>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="engineTypeSelect">Engine Architecture</label>
+                                    <select id="engineTypeSelect" class="custom-select" onchange="triggerPredict()"></select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="cylinderSelect">Cylinder Count</label>
+                                    <select id="cylinderSelect" class="custom-select" onchange="triggerPredict()"></select>
+                                </div>
+                            </div>
+
+                            <!-- Sliders -->
+                            <div class="slider-group">
+                                <div class="slider-header">
+                                    <label>Engine Power (Horsepower)</label>
+                                    <span class="slider-val" id="hpVal">100 HP</span>
+                                </div>
+                                <input type="range" id="hpSlider" min="48" max="288" step="1" value="100" oninput="updateSlider('hpVal', this.value, ' HP'); triggerPredict();">
+                            </div>
+
+                            <div class="slider-group">
+                                <div class="slider-header">
+                                    <label>Displacement (Engine Size)</label>
+                                    <span class="slider-val" id="engineSizeVal">120 cc</span>
+                                </div>
+                                <input type="range" id="engineSizeSlider" min="60" max="326" step="1" value="120" oninput="updateSlider('engineSizeVal', this.value, ' cc'); triggerPredict();">
+                            </div>
+
+                            <div class="slider-group">
+                                <div class="slider-header">
+                                    <label>Curb Weight</label>
+                                    <span class="slider-val" id="curbWeightVal">2400 lbs</span>
+                                </div>
+                                <input type="range" id="curbWeightSlider" min="1488" max="4066" step="10" value="2400" oninput="updateSlider('curbWeightVal', this.value, ' lbs'); triggerPredict();">
+                            </div>
+
+                            <div class="form-row">
+                                <div class="slider-group half">
+                                    <div class="slider-header">
+                                        <label>City Mileage</label>
+                                        <span class="slider-val" id="cityMpgVal">25 MPG</span>
+                                    </div>
+                                    <input type="range" id="cityMpgSlider" min="13" max="49" step="1" value="25" oninput="updateSlider('cityMpgVal', this.value, ' MPG'); triggerPredict();">
+                                </div>
+                                <div class="slider-group half">
+                                    <div class="slider-header">
+                                        <label>Highway Mileage</label>
+                                        <span class="slider-val" id="hwyMpgVal">30 MPG</span>
+                                    </div>
+                                    <input type="range" id="hwyMpgSlider" min="16" max="54" step="1" value="30" oninput="updateSlider('hwyMpgVal', this.value, ' MPG'); triggerPredict();">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Right Column: Visual Showcase & Valuation Breakdown -->
+                    <div class="prediction-results">
+                        <!-- Car Image Showcase -->
+                        <div class="glass-card car-showcase-card">
+                            <div class="car-image-container">
+                                <img id="carPreviewImg" src="/static/images/sedan.png" alt="Vehicle Category Showcase" class="car-img">
+                                <div class="car-image-overlay">
+                                    <span id="carImageCategory">SEDAN SHOWCASE</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Price Result Card -->
+                        <div class="glass-card result-card">
+                            <div class="result-header">
+                                <span>Estimated Resale Value</span>
+                                <span class="badge" id="tierBadge">Executive Class</span>
+                            </div>
+
+                            <div class="price-display">
+                                <span class="currency" id="currSymbol">₹</span>
+                                <span class="amount" id="predictedPrice">11.90 Lakh</span>
+                            </div>
+                            <div class="secondary-price" id="secondaryPrice">
+                                Full Amount: ₹ 11,89,875 (Equal to $14,250 USD)
+                            </div>
+
+                            <!-- 3-Way Valuation Matrix -->
+                            <div class="valuation-matrix">
+                                <div class="vm-box">
+                                    <span class="vm-title">Ex-Showroom Price</span>
+                                    <strong class="vm-val" id="showroomPrice">₹ 14.87 Lakh</strong>
+                                </div>
+                                <div class="vm-box highlight">
+                                    <span class="vm-title">Private Resale Value</span>
+                                    <strong class="vm-val" id="resalePrice">₹ 11.90 Lakh</strong>
+                                </div>
+                                <div class="vm-box">
+                                    <span class="vm-title">Dealer Trade-In Cash</span>
+                                    <strong class="vm-val" id="tradeInPrice">₹ 10.47 Lakh</strong>
+                                </div>
+                            </div>
+
+                            <div class="confidence-container">
+                                <div class="conf-labels">
+                                    <span>Fair Valuation Range (95% Confidence):</span>
+                                    <strong id="confInterval">₹ 10.86 Lakh — ₹ 12.94 Lakh</strong>
+                                </div>
+                                <div class="conf-bar">
+                                    <div class="conf-fill" style="width: 85%;"></div>
+                                </div>
+                            </div>
+
+                            <!-- Drivers & Specs -->
+                            <div class="drivers-box">
+                                <h4><i class="fa-solid fa-circle-check"></i> Key Value Determinants</h4>
+                                <ul id="driversList" class="drivers-list">
+                                    <li>Standard Vehicle Specs</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Depreciation & Value Retention Schedule Table -->
+                <div class="glass-card full-card schedule-card">
+                    <div class="card-header">
+                        <h3><i class="fa-solid fa-chart-line"></i> 5-Year Vehicle Value Retention & Depreciation Schedule</h3>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="schedule-table">
+                            <thead>
+                                <tr>
+                                    <th>Timeline Period</th>
+                                    <th>Estimated Vehicle Value</th>
+                                    <th>Retained Value (%)</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="depreciationTableBody">
+                                <!-- JS Populated -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 2: SIDE-BY-SIDE CAR COMPARISON -->
+            <section id="tab-compare" class="tab-pane">
+                <div class="glass-card full-card">
+                    <div class="card-header">
+                        <div>
+                            <h3><i class="fa-solid fa-code-compare"></i> Side-by-Side Vehicle Comparison Engine</h3>
+                            <p>Compare market values and technical parameters between two vehicle configurations.</p>
+                        </div>
+                        <button class="btn primary" onclick="runComparison()"><i class="fa-solid fa-arrows-rotate"></i> Compare Now</button>
+                    </div>
+
+                    <div class="compare-grid">
+                        <!-- Vehicle A -->
+                        <div class="compare-card">
+                            <div class="compare-header">
+                                <span class="badge-tag">Vehicle Option A</span>
+                            </div>
+                            <div class="form-group">
+                                <label>Brand Make</label>
+                                <select id="cmpBrandA" class="custom-select"></select>
+                            </div>
+                            <div class="form-group">
+                                <label>Body Type</label>
+                                <select id="cmpBodyA" class="custom-select"></select>
+                            </div>
+                            <div class="form-group">
+                                <label>Horsepower</label>
+                                <input type="number" id="cmpHpA" class="custom-input" value="120">
+                            </div>
+                            <div class="form-group">
+                                <label>Engine Size (cc)</label>
+                                <input type="number" id="cmpEngineA" class="custom-input" value="130">
+                            </div>
+                            
+                            <div class="compare-result-box" id="cmpBoxA">
+                                <img src="/static/images/sedan.png" id="cmpImgA" class="cmp-car-img">
+                                <div class="cmp-price" id="cmpPriceA">₹ 12.50 Lakh</div>
+                            </div>
+                        </div>
+
+                        <!-- VS Circle Divider -->
+                        <div class="vs-divider">VS</div>
+
+                        <!-- Vehicle B -->
+                        <div class="compare-card">
+                            <div class="compare-header">
+                                <span class="badge-tag violet">Vehicle Option B</span>
+                            </div>
+                            <div class="form-group">
+                                <label>Brand Make</label>
+                                <select id="cmpBrandB" class="custom-select"></select>
+                            </div>
+                            <div class="form-group">
+                                <label>Body Type</label>
+                                <select id="cmpBodyB" class="custom-select"></select>
+                            </div>
+                            <div class="form-group">
+                                <label>Horsepower</label>
+                                <input type="number" id="cmpHpB" class="custom-input" value="200">
+                            </div>
+                            <div class="form-group">
+                                <label>Engine Size (cc)</label>
+                                <input type="number" id="cmpEngineB" class="custom-input" value="180">
+                            </div>
+
+                            <div class="compare-result-box" id="cmpBoxB">
+                                <img src="/static/images/convertible.png" id="cmpImgB" class="cmp-car-img">
+                                <div class="cmp-price" id="cmpPriceB">₹ 24.80 Lakh</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Comparison Summary Card -->
+                    <div class="compare-summary-box" id="compareSummaryBox">
+                        <div class="cs-icon"><i class="fa-solid fa-scale-balanced"></i></div>
+                        <div class="cs-info">
+                            <h4 id="cmpSummaryTitle">Valuation Difference: ₹ 12.30 Lakh</h4>
+                            <p id="cmpSummaryDesc">Option B holds higher market valuation driven by increased engine capacity and performance specs.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 3: MARKET INTELLIGENCE -->
+            <section id="tab-market" class="tab-pane">
+                <div class="charts-row full">
+                    <div class="glass-card chart-card">
+                        <div class="card-header">
+                            <h3><i class="fa-solid fa-tags"></i> Average Market Resale Price by Brand</h3>
+                        </div>
+                        <div class="chart-container large">
+                            <canvas id="chartBrandAvg"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="charts-row">
+                    <div class="glass-card chart-card">
+                        <div class="card-header">
+                            <h3><i class="fa-solid fa-bolt"></i> Horsepower vs Market Resale Price</h3>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="chartHpScatter"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="glass-card chart-card">
+                        <div class="card-header">
+                            <h3><i class="fa-solid fa-shapes"></i> Market Share by Body Category</h3>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="chartBodyPie"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Hidden Printable Valuation Certificate Template -->
+    <div id="printCertificate" class="print-certificate">
+        <div class="cert-header">
+            <h2>AutoValuate Pro</h2>
+            <p>Official Automotive Market Valuation Certificate</p>
+        </div>
+        <hr>
+        <div class="cert-body">
+            <div class="cert-row"><span>Valuation Date:</span> <strong id="certDate">04-Aug-2026</strong></div>
+            <div class="cert-row"><span>Vehicle Category:</span> <strong id="certBody">Sedan</strong></div>
+            <div class="cert-row"><span>Brand Make:</span> <strong id="certBrand">Toyota</strong></div>
+            <div class="cert-row"><span>Engine Specs:</span> <strong id="certEngine">120 cc | 100 HP</strong></div>
+            <div class="cert-main-price">
+                <span>Estimated Market Value:</span>
+                <h1 id="certPrice">₹ 11.90 Lakh</h1>
+            </div>
+            <div class="cert-row"><span>Fair Range:</span> <strong id="certRange">₹ 10.86 Lakh — ₹ 12.94 Lakh</strong></div>
+            <div class="cert-row"><span>Ex-Showroom Estimate:</span> <strong id="certShowroom">₹ 14.87 Lakh</strong></div>
+            <div class="cert-row"><span>Instant Dealer Trade-In Cash:</span> <strong id="certTradeIn">₹ 10.47 Lakh</strong></div>
+        </div>
+        <div class="cert-footer">
+            <p>Generated by AutoValuate Pro Vehicle Valuation Platform. Certified Market Valuation.</p>
+        </div>
+    </div>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,550 @@
+{
+  "best_model_name": "Random Forest",
+  "model_results": [
+    {
+      "name": "Linear Regression",
+      "train_r2": 0.9739,
+      "test_r2": 0.9012,
+      "mae": 1903.59,
+      "rmse": 2793.31
+    },
+    {
+      "name": "Ridge Regression",
+      "train_r2": 0.9717,
+      "test_r2": 0.9013,
+      "mae": 1960.22,
+      "rmse": 2791.28
+    },
+    {
+      "name": "Lasso Regression",
+      "train_r2": 0.9738,
+      "test_r2": 0.9088,
+      "mae": 1841.6,
+      "rmse": 2683.76
+    },
+    {
+      "name": "Random Forest",
+      "train_r2": 0.9858,
+      "test_r2": 0.9597,
+      "mae": 1239.9,
+      "rmse": 1782.81
+    },
+    {
+      "name": "Gradient Boosting",
+      "train_r2": 0.9976,
+      "test_r2": 0.9352,
+      "mae": 1573.13,
+      "rmse": 2262.62
+    },
+    {
+      "name": "XGBoost",
+      "train_r2": 0.9988,
+      "test_r2": 0.9308,
+      "mae": 1571.56,
+      "rmse": 2337.66
+    }
+  ],
+  "feature_names": [
+    "symboling",
+    "wheelbase",
+    "carlength",
+    "carwidth",
+    "carheight",
+    "curbweight",
+    "enginesize",
+    "boreratio",
+    "stroke",
+    "compressionratio",
+    "horsepower",
+    "peakrpm",
+    "citympg",
+    "highwaympg",
+    "power_to_weight",
+    "avg_mpg",
+    "fueltype_gas",
+    "aspiration_turbo",
+    "doornumber_two",
+    "carbody_hardtop",
+    "carbody_hatchback",
+    "carbody_sedan",
+    "carbody_wagon",
+    "drivewheel_fwd",
+    "drivewheel_rwd",
+    "enginelocation_rear",
+    "enginetype_dohcv",
+    "enginetype_l",
+    "enginetype_ohc",
+    "enginetype_ohcf",
+    "enginetype_ohcv",
+    "enginetype_rotor",
+    "cylindernumber_five",
+    "cylindernumber_four",
+    "cylindernumber_six",
+    "cylindernumber_three",
+    "cylindernumber_twelve",
+    "cylindernumber_two",
+    "fuelsystem_2bbl",
+    "fuelsystem_4bbl",
+    "fuelsystem_idi",
+    "fuelsystem_mfi",
+    "fuelsystem_mpfi",
+    "fuelsystem_spdi",
+    "fuelsystem_spfi",
+    "brand_audi",
+    "brand_bmw",
+    "brand_buick",
+    "brand_chevrolet",
+    "brand_dodge",
+    "brand_honda",
+    "brand_isuzu",
+    "brand_jaguar",
+    "brand_mazda",
+    "brand_mercury",
+    "brand_mitsubishi",
+    "brand_nissan",
+    "brand_peugeot",
+    "brand_plymouth",
+    "brand_porcshce",
+    "brand_porsche",
+    "brand_renault",
+    "brand_saab",
+    "brand_subaru",
+    "brand_toyota",
+    "brand_volkswagen",
+    "brand_volvo"
+  ],
+  "feature_importances": [
+    {
+      "feature": "enginesize",
+      "importance": 0.5867
+    },
+    {
+      "feature": "curbweight",
+      "importance": 0.2454
+    },
+    {
+      "feature": "avg_mpg",
+      "importance": 0.0347
+    },
+    {
+      "feature": "highwaympg",
+      "importance": 0.0307
+    },
+    {
+      "feature": "horsepower",
+      "importance": 0.0241
+    },
+    {
+      "feature": "carwidth",
+      "importance": 0.015
+    },
+    {
+      "feature": "carlength",
+      "importance": 0.0074
+    },
+    {
+      "feature": "wheelbase",
+      "importance": 0.0067
+    },
+    {
+      "feature": "brand_bmw",
+      "importance": 0.0059
+    },
+    {
+      "feature": "power_to_weight",
+      "importance": 0.0057
+    },
+    {
+      "feature": "peakrpm",
+      "importance": 0.0052
+    },
+    {
+      "feature": "boreratio",
+      "importance": 0.0052
+    },
+    {
+      "feature": "stroke",
+      "importance": 0.0033
+    },
+    {
+      "feature": "citympg",
+      "importance": 0.0031
+    },
+    {
+      "feature": "cylindernumber_four",
+      "importance": 0.003
+    },
+    {
+      "feature": "carheight",
+      "importance": 0.0027
+    },
+    {
+      "feature": "compressionratio",
+      "importance": 0.0027
+    },
+    {
+      "feature": "fuelsystem_mpfi",
+      "importance": 0.0013
+    },
+    {
+      "feature": "drivewheel_rwd",
+      "importance": 0.001
+    },
+    {
+      "feature": "enginetype_ohc",
+      "importance": 0.001
+    }
+  ],
+  "actual_vs_predicted": [
+    {
+      "actual": 30760.0,
+      "predicted": 35908.08
+    },
+    {
+      "actual": 17859.17,
+      "predicted": 19087.63
+    },
+    {
+      "actual": 9549.0,
+      "predicted": 9001.57
+    },
+    {
+      "actual": 11850.0,
+      "predicted": 13098.15
+    },
+    {
+      "actual": 28248.0,
+      "predicted": 27800.41
+    },
+    {
+      "actual": 7799.0,
+      "predicted": 6515.51
+    },
+    {
+      "actual": 7788.0,
+      "predicted": 7862.01
+    },
+    {
+      "actual": 9258.0,
+      "predicted": 8001.29
+    },
+    {
+      "actual": 10198.0,
+      "predicted": 9789.19
+    },
+    {
+      "actual": 7775.0,
+      "predicted": 8203.02
+    },
+    {
+      "actual": 13295.0,
+      "predicted": 14619.12
+    },
+    {
+      "actual": 8238.0,
+      "predicted": 7838.32
+    },
+    {
+      "actual": 18280.0,
+      "predicted": 14844.52
+    },
+    {
+      "actual": 9988.0,
+      "predicted": 10870.89
+    },
+    {
+      "actual": 40960.0,
+      "predicted": 40748.69
+    },
+    {
+      "actual": 6488.0,
+      "predicted": 6452.79
+    },
+    {
+      "actual": 5151.0,
+      "predicted": 5691.27
+    },
+    {
+      "actual": 12629.0,
+      "predicted": 14039.67
+    },
+    {
+      "actual": 8189.0,
+      "predicted": 8461.39
+    },
+    {
+      "actual": 9960.0,
+      "predicted": 9448.84
+    },
+    {
+      "actual": 8495.0,
+      "predicted": 10351.6
+    },
+    {
+      "actual": 13499.0,
+      "predicted": 15368.95
+    },
+    {
+      "actual": 8249.0,
+      "predicted": 7189.91
+    },
+    {
+      "actual": 6479.0,
+      "predicted": 5773.42
+    },
+    {
+      "actual": 6692.0,
+      "predicted": 7291.21
+    },
+    {
+      "actual": 41315.0,
+      "predicted": 36048.26
+    },
+    {
+      "actual": 9639.0,
+      "predicted": 9326.97
+    },
+    {
+      "actual": 13415.0,
+      "predicted": 16816.14
+    },
+    {
+      "actual": 7999.0,
+      "predicted": 7272.6
+    },
+    {
+      "actual": 12940.0,
+      "predicted": 16487.49
+    },
+    {
+      "actual": 25552.0,
+      "predicted": 27987.2
+    },
+    {
+      "actual": 6229.0,
+      "predicted": 6379.92
+    },
+    {
+      "actual": 7898.0,
+      "predicted": 7962.98
+    },
+    {
+      "actual": 21485.0,
+      "predicted": 18952.77
+    },
+    {
+      "actual": 7689.0,
+      "predicted": 8055.97
+    },
+    {
+      "actual": 28176.0,
+      "predicted": 27985.39
+    },
+    {
+      "actual": 11259.0,
+      "predicted": 10426.99
+    },
+    {
+      "actual": 10945.0,
+      "predicted": 12498.44
+    },
+    {
+      "actual": 8916.5,
+      "predicted": 7741.73
+    },
+    {
+      "actual": 14489.0,
+      "predicted": 14568.88
+    }
+  ],
+  "categorical_options": {
+    "fueltype": [
+      "diesel",
+      "gas"
+    ],
+    "aspiration": [
+      "std",
+      "turbo"
+    ],
+    "doornumber": [
+      "four",
+      "two"
+    ],
+    "carbody": [
+      "convertible",
+      "hardtop",
+      "hatchback",
+      "sedan",
+      "wagon"
+    ],
+    "drivewheel": [
+      "4wd",
+      "fwd",
+      "rwd"
+    ],
+    "enginelocation": [
+      "front",
+      "rear"
+    ],
+    "enginetype": [
+      "dohc",
+      "dohcv",
+      "l",
+      "ohc",
+      "ohcf",
+      "ohcv",
+      "rotor"
+    ],
+    "cylindernumber": [
+      "eight",
+      "five",
+      "four",
+      "six",
+      "three",
+      "twelve",
+      "two"
+    ],
+    "fuelsystem": [
+      "1bbl",
+      "2bbl",
+      "4bbl",
+      "idi",
+      "mfi",
+      "mpfi",
+      "spdi",
+      "spfi"
+    ],
+    "brand": [
+      "alfa-romeo",
+      "audi",
+      "bmw",
+      "buick",
+      "chevrolet",
+      "dodge",
+      "honda",
+      "isuzu",
+      "jaguar",
+      "mazda",
+      "mercury",
+      "mitsubishi",
+      "nissan",
+      "peugeot",
+      "plymouth",
+      "porcshce",
+      "porsche",
+      "renault",
+      "saab",
+      "subaru",
+      "toyota",
+      "volkswagen",
+      "volvo"
+    ]
+  },
+  "numerical_stats": {
+    "symboling": {
+      "min": -2.0,
+      "max": 3.0,
+      "mean": 0.8341463414634146,
+      "median": 1.0,
+      "default": 1.0
+    },
+    "wheelbase": {
+      "min": 86.6,
+      "max": 114.25000000000001,
+      "mean": 98.7109756097561,
+      "median": 97.0,
+      "default": 97.0
+    },
+    "carlength": {
+      "min": 141.10000000000002,
+      "max": 208.1,
+      "mean": 174.04926829268288,
+      "median": 173.2,
+      "default": 173.2
+    },
+    "carwidth": {
+      "min": 60.3,
+      "max": 71.10000000000002,
+      "mean": 65.88439024390243,
+      "median": 65.5,
+      "default": 65.5
+    },
+    "carheight": {
+      "min": 47.8,
+      "max": 59.8,
+      "mean": 53.72487804878049,
+      "median": 54.1,
+      "default": 54.1
+    },
+    "curbweight": {
+      "min": 1488.0,
+      "max": 4066.0,
+      "mean": 2555.5658536585365,
+      "median": 2414.0,
+      "default": 2414.0
+    },
+    "enginesize": {
+      "min": 61.0,
+      "max": 207.0,
+      "mean": 124.57073170731708,
+      "median": 120.0,
+      "default": 120.0
+    },
+    "boreratio": {
+      "min": 2.54,
+      "max": 3.94,
+      "mean": 3.329756097560975,
+      "median": 3.31,
+      "default": 3.31
+    },
+    "stroke": {
+      "min": 2.6599999999999993,
+      "max": 3.8600000000000003,
+      "mean": 3.2618048780487796,
+      "median": 3.29,
+      "default": 3.29
+    },
+    "compressionratio": {
+      "min": 7.399999999999999,
+      "max": 10.600000000000001,
+      "mean": 9.039121951219512,
+      "median": 9.0,
+      "default": 9.0
+    },
+    "horsepower": {
+      "min": 48.0,
+      "max": 185.0,
+      "mean": 102.84390243902439,
+      "median": 95.0,
+      "default": 95.0
+    },
+    "peakrpm": {
+      "min": 4150.0,
+      "max": 6550.0,
+      "mean": 5124.634146341464,
+      "median": 5200.0,
+      "default": 5200.0
+    },
+    "citympg": {
+      "min": 13.0,
+      "max": 46.5,
+      "mean": 25.204878048780486,
+      "median": 24.0,
+      "default": 24.0
+    },
+    "highwaympg": {
+      "min": 16.0,
+      "max": 47.5,
+      "mean": 30.680487804878048,
+      "median": 30.0,
+      "default": 30.0
+    }
+  },
+  "total_records": 205,
+  "target_stats": {
+    "min": 5118.0,
+    "max": 45400.0,
+    "mean": 13276.710570731706,
+    "median": 10295.0
+  }
+}
