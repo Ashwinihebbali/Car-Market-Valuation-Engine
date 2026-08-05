@@ -27,9 +27,10 @@ app.add_middleware(
 USD_TO_INR = 83.5
 
 # Load pipeline and metadata silently
-PIPELINE_PATH = "car_price_pipeline.joblib"
-METADATA_PATH = "model_metadata.json"
-CSV_PATH = "CarPrice_Assignment (1).csv"
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+PIPELINE_PATH = os.path.join(BASE_DIR, "car_price_pipeline.joblib")
+METADATA_PATH = os.path.join(BASE_DIR, "model_metadata.json")
+CSV_PATH = os.path.join(BASE_DIR, "CarPrice_Assignment (1).csv")
 
 if not os.path.exists(PIPELINE_PATH) or not os.path.exists(METADATA_PATH):
     raise FileNotFoundError("System initialization files missing. Please run train_model.py first.")
@@ -287,9 +288,10 @@ def compare_cars(compare: CompareInput):
     }
 
 
-os.makedirs("static", exist_ok=True)
-app.mount("/static", StaticFiles(directory="static"), name="static")
+STATIC_DIR = os.path.join(BASE_DIR, "static")
+os.makedirs(STATIC_DIR, exist_ok=True)
+app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
 
 @app.get("/")
 def read_root():
-    return FileResponse("static/index.html")
+    return FileResponse(os.path.join(STATIC_DIR, "index.html"))
