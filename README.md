@@ -2,7 +2,7 @@
  
 [![FastAPI](https://img.shields.io/badge/Backend-FastAPI-009688?style=flat-square&logo=fastapi)](https://fastapi.tiangolo.com/)
 [![Python](https://img.shields.io/badge/Python-3.11-3776AB?style=flat-square&logo=python)](https://www.python.org/)
-[![Scikit-Learn](https://img.shields.io/badge/ML-Scikit--Learn-F7931E?style=flat-square&logo=scikit-learn)](https://scikit-learn.org/)
+[![Scikit-Learn](https://img.shields.io/badge/ML-Scikit--Learn-F7931E?style=flat-square&logo=scikit-learn)](https://scikit-learn.org/) 
 [![Vercel](https://img.shields.io/badge/Deploy-Vercel-000000?style=flat-square&logo=vercel)](https://vercel.com)
 
 **AutoValuate Pro** is a commercial-grade vehicle valuation engine and automotive market analytics platform. It provides real-time resale price predictions in Indian Rupees (₹ Lakhs & Crores) and USD, 5-year depreciation schedules, side-by-side vehicle comparisons, and exportable official valuation certificates.
